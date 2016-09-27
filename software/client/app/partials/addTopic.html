@@ -1,0 +1,26 @@
+<div class="vertical-align-center">
+    <div class="modal-header">
+        <h3>Add New Topic</h3>
+    </div>
+    <form class="form-horizontal" name="addTopic" ng-submit="cd.ok()">
+        <div class="modal-body">
+            <div class="form-group">
+                <label class="control-label col-sm-4" >Topic Name:</label>
+                <div class="col-sm-8">
+                    <input  type="text" name="topicName" ng-model="cd.form_name" class="form-control"  placeholder="Enter Topic Name" required>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-sm-4" >Number Of Questions:</label>
+                <div class="col-sm-8">
+                    <input type="number" ng-model="cd.questionNumber" step="1" value="0" min="0" class="form-control"   required>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-primary" type="submit">OK</button>
+            <button class="btn btn-warning" type="button" ng-click="cd.cancel()">Cancel</button>
+        </div>
+    </form>
+
+</div>

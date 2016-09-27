@@ -1,0 +1,42 @@
+<div class="container">
+    <!--<div class="row">
+        <div class="col-md-1"></div>
+        <div class="col-md-2 topic-heading">{{am.name}}</div>
+        <div class="col-md-6"></div>
+        <a ui-sref="question({name: am.name})"><div class="col-md-2 topic-heading">Back</div></a>
+        <div class="col-md-1"></div>
+    </div>
+    <div class="row" >
+        <div class="col-md-2"></div>
+        <div class="col-md-8 question-body">
+            <label class="sub-heading"><b>Question :</b></label>
+            <b class="question-p">{{ am.question}}</b>
+        </div>
+        <div class="col-md-2"></div>
+    </div>-->
+    <div class="row">
+        <div class="col-md-5"></div>
+        <div class="col-md-2 topic-heading">Answers</div>
+        <div class="col-md-5"></div>
+    </div>
+    <div class="row" ng-repeat="answer in am.answer">
+        <div class="col-md-2"></div>
+        <div class="col-md-8 question-body">
+            <div class="row">
+                <div class="col-md-12">
+                    <p class="answer-desc">{{answer.answer}}</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6"><label class="sub-heading">Author :</label> {{answer.author}}</div>
+                <div class="col-md-6"><label class="sub-heading">Answered Date :</label> {{answer.answereddate | convertDate | date:"MMM d, y"}}</div>
+            </div>
+            <div class="row">
+                <div class="col-md-12" style="text-align: right">
+                    <label  class="sub-heading"><b>Rating :</b></label> {{answer.rate}}
+                </div>
+            </div>
+        </div>
+        <div class="col-md-2"></div>
+    </div>
+</div>

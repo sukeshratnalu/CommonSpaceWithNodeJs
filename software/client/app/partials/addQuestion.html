@@ -1,0 +1,32 @@
+<div>
+    <div class="modal-header">
+        <h3>Add Question</h3>
+    </div>
+    <form class="form-horizontal" name="addTopic" ng-submit="qd.ok()">
+        <div class="modal-body">
+            <div class="form-group">
+                <label class="control-label col-sm-4" >Question:</label>
+                <div class="col-sm-8">
+                    <input  type="text" name="topicName" ng-model="qd.question" class="form-control"  placeholder="Enter Question" required>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-sm-4" >Rateing:</label>
+                <div class="col-sm-8">
+                    <input type="number" ng-model="qd.rate" step="1" value="1" min="0" max="5" class="form-control"  placeholder="Enter Rating"  required>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-sm-4" >Number Of Answers:</label>
+                <div class="col-sm-8">
+                    <input type="number" ng-model="qd.answerNumber" step="1" value="1" min="0" class="form-control"   required>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-primary" type="submit">OK</button>
+            <button class="btn btn-warning" type="button" ng-click="qd.cancel()">Cancel</button>
+        </div>
+    </form>
+
+</div>
