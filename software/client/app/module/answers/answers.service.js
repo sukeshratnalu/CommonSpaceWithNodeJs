@@ -4,12 +4,15 @@
 (function(){
     angular.module('CommonSpace')
         .service('answerService',answerService);
-    answerService.$inject=['$q','api'];
-    function answerService($q,api){
+    answerService.$inject=['$q','api','$timeout'];
+    function answerService($q,api,$timeout){
         var service={
-            readanswersById:readanswersById
+            readanswersById:readanswersById,
+            updateAnswerRate:updateAnswerRate
         };
         function readanswersById(Qid){
+            console.log("I m in answer service");
+            console.log(Qid);
             var deferred = $q.defer();
             var question={
                 id:Qid
@@ -21,6 +24,26 @@
             function getanswersFailed(error) {
                 deferred.reject(error)
             }
+            return deferred.promise;
+        }
+        function updateAnswerRate(id,rate){
+            var answer={
+                a_id:id,
+                rating:rate
+            };
+            var deferred = $q.defer();
+
+            api.updateAnswerRating(answer).$promise.then(updateAnswerComplete).catch(updateAnswerFailed);
+
+            function updateAnswerComplete(response) {
+
+                deferred.resolve(response);
+            }
+
+            function updateAnswerFailed(error) {
+                deferred.reject(error)
+            }
+
             return deferred.promise;
         }
         return service;

@@ -4,8 +4,8 @@
 (function(){
     angular.module('CommonSpace')
         .factory('dashboardFactory',dashboardFactory);
-    dashboardFactory.$inject=['$uibModal','api','$q','$timeout'];
-    function dashboardFactory($uibModal,api,$q,$timeout){
+    dashboardFactory.$inject=['$uibModal','api','$q','$timeout','$rootScope'];
+    function dashboardFactory($uibModal,api,$q,$timeout,$rootScope){
         var newTopic={
             name:''
 
@@ -23,12 +23,12 @@
             readTopics:readTopics
 
         };
+        //function for sending topics,questions and answers to server
         function addTopic(){
             openAddTopicModal();
         }
-        /*logic for addTask modal*/
+        /*logic for addTopic modal*/
         function openAddTopicModal(){
-
             var modalInstance = $uibModal.open({
                 templateUrl:'partials/addTopic.html',
                 windowClass: 'center-modal',
@@ -37,6 +37,8 @@
                     cd.questionNumber;
                     cd.form_name;
                     var topic_id;
+                    console.log('I m i add topic modal');
+                    console.log($rootScope.allTopics);
 
                     cd.ok = function () {
                         newTopic.name=cd.form_name;
@@ -99,13 +101,11 @@
                         subject.form_rate=qd.rate;
                         var deferred = $q.defer();
                         $timeout(function () {
-                            console.log('hi I m in question modal----------');
-                            console.log(subject);
-                            api.addQuestions(subject).$promise.then(addingTodoCompleted).catch(addingTodoFailed);
-                            function addingTodoCompleted(response){
+                            api.addQuestions(subject).$promise.then(addQuestionsCompleted).catch(addQuestionsFailed);
+                            function addQuestionsCompleted(response){
                                 deferred.resolve(response);
                             }
-                            function addingTodoFailed(error){
+                            function addQuestionsFailed(error){
                                 deferred.reject(error);
                             }
                             return deferred.promise;
@@ -152,25 +152,17 @@
                 windowClass: 'center-modal',
                 controller: function($uibModalInstance){
                     var  ad=this;
-
                     ad.answer;
                     ad.author;
                     ad.rating;
                     ad.answeredDate;
-
-                    console.log('I m in answer modal_______');
-                    console.log(answers.questionId);
                    ad.ok=function(){
                        answers.form_answer=ad.answer;
                        answers.form_author=ad.author;
                        answers.form_rate=ad.rating;
                        answers.form_answerDate=ad.answeredDate;
-                       console.log("Hi I m in ok() of add answer modal");
-                       console.log(answers);
                         var deferred = $q.defer();
                        $timeout(function () {
-                           console.log('^^^^^^^^^^^^^^^^^^^^^^');
-                           console.log(answers);
                            api.addAnswers(answers).$promise.then(addingTodoCompleted).catch(addingTodoFailed);
                            function addingTodoCompleted(response){
                                deferred.resolve(response);
@@ -179,7 +171,7 @@
                                deferred.reject(error);
                            }
                            answers=deferred.promise;
-                       }, 10000);
+                       }, 2000);
 
                         // The promise is returned to the caller
 
@@ -192,12 +184,10 @@
                 },
                 controllerAs:'ad'
             });
-
-                console.log('add answer modal');
-                console.log(answers);
                return answers;
 
         }
+        //function for getting allTopics from server
         function readTopics(){
             var deferred = $q.defer();
             api.getTopics().$promise.then(getTopicsComplete).catch(getTopicsFailed);
@@ -212,25 +202,6 @@
             }
             return deferred.promise;
         }
-        /*function readQuestions(topicId){
-            console.log('dashboardfactory readQuestions.....');
-            console.log(topicId);
-            var deferred = $q.defer();
-            var topic={
-                id:topicId
-            };
-            api.getQuestions(topic).$promise.then(getQuestionsComplete).catch(getQuestionsFailed);
-
-            function getQuestionsComplete(response) {
-
-                deferred.resolve(response);
-            }
-
-            function getQuestionsFailed(error) {
-                deferred.reject(error)
-            }
-            return deferred.promise;
-        }*/
         return factory;
     }
 }());

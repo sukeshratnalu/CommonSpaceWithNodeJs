@@ -1,31 +1,27 @@
 <div class="container">
-    <!--<div class="row">
+    <div class="row">
         <div class="col-md-1"></div>
         <div class="col-md-3 topic-heading"><p>{{qm.topicName}}</p></div>
         <div class="col-md-5"></div>
         <a ui-sref="dashboard"><div class="col-md-2 topic-heading">Back</div></a>
         <div class="col-md-1"></div>
-    </div>-->
+    </div>
     <div class="row">
         <div class="col-md-12 " ng-repeat="questions in qm.questions">
 
                 <div class="col-md-2"></div>
 
                 <div class="col-md-8 question-body">
-                    <a  ui-sref="answer({id: questions._id})"><p class="question-p">{{questions.question}}</p></a>
-                    <!--<div class="row">
-                        <div class="col-md-12">
-                            <top-answer name='{{qm.topicName}}' question='{{subject.question}}'></top-answer>
-                        </div>
-                    </div>
+                    <a  ui-sref="answer({id: questions._id,name:qm.topicName,question:questions.question})"><p class="question-p">{{questions.question}}</p>
                     <div class="row">
                         <div class="col-md-12">
-                            <label class="sub-heading"><b>Total Answers :</b><b class="answer-desc">{{subject.answers.length}}</b></label>
+                            <top-answer id="{{questions._id}}"></top-answer>
+                        </div>
+                    </div></a>
 
-                        </div>
-                    </div>-->
                     <div class="row">
-                        <div class="col-md-12" style="text-align: right">
+                        <div class="col-md-8" ></div>
+                        <div class="col-md-4" >
                             <div class="stars">
                                 <label class="sub-heading"><b>Question Rating :</b><b class="answer-desc">{{questions.rate}}</b></label><br>
                                 <input-stars ng-click="qm.updateQRating(questions._id,questions.rate)" max="5" ng-model="questions.rate"></input-stars>

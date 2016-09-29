@@ -50,6 +50,15 @@
                 method:'POST',
                 isArray:true,
                 url:'/getAnswer'
+            },
+            'updateAnswerRating':{
+                method:'PUT',
+                url:'/updateAnswerRating'
+            },
+            'getAllQuestions':{
+                method:'GET',
+                isArray:true,
+                url:'/getAllQuestions'
             }
 
         }

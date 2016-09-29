@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html lang="en" ng-app="CommonSpace" class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html lang="en" ng-app="CommonSpace" class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html lang="en" ng-app="CommonSpace" class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html lang="en" ng-app="CommonSpace" class="no-js"> <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>My AngularJS App</title>
+  <meta name="description" content="">
+  <!--<meta name="fragment" content="!" />-->
+  <base href="/" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="bower_components/html5-boilerplate/dist/css/normalize.css">
+  <link rel="stylesheet" href="bower_components/html5-boilerplate/dist/css/main.css">
+  <link rel="stylesheet" href="../../../../../bower_components/bootstrap/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="bower_components/font-awesome/css/font-awesome.min.css">
+  <link rel="stylesheet" href="bower_components/angularjs-datepicker/dist/angular-datepicker.min.css">
+  <link rel="stylesheet" href="bower_components/angular-input-stars-directive/angular-input-stars.css">
+  <link rel="stylesheet" href="app.css">
+  <script src="bower_components/html5-boilerplate/dist/js/vendor/modernizr-2.8.3.min.js"></script>
+</head>
+<body>
+<div class="row header">
+  <div class="col-md-12">
+    <div class="col-md-6"><h1>Common Space</h1></div>
+  </div>
+</div>
+<div class="container operation-div">
+  <div class="row" ng-controller="dashboardController as vm">
+    <button type="button" class="btn-primary" style="height: 35px;" ng-click="vm.addTopics();">
+      <span class="glyphicon glyphicon-plus-sign"></span>
+      Add New Topic
+    </button>
+  </div>
+</div>
+
+<div class="body-content" ui-view></div>
+<div class="row footer">
+  <div class="col-md-12">
+    <p>Powered By Semanticbits</p>
+  </div>
+</div>
+
+  <script src="../../../../../bower_components/jquery/dist/jquery.min.js"></script>
+  <script src="../../../../../bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+  <script src="../../../../../bower_components/angular/angular.js"></script>
+  <script src="bower_components/angular-ui-router/release/angular-ui-router.min.js"></script>
+  <script src="bower_components/angular-bootstrap/ui-bootstrap.min.js"></script>
+  <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
+  <script src="bower_components/angular-ui-router-uib-modal/angular-ui-router-uib-modal.js"></script>
+  <script src="bower_components/angularjs-datepicker/dist/angular-datepicker.min.js"></script>
+  <script src="../../../../../bower_components/angular-resource/angular-resource.min.js"></script>
+  <script src="bower_components/angular-input-stars-directive/angular-input-stars.js"></script>
+
+
+
+  <script src="module/app.module.js"></script>
+  <script src="module/app.config.js"></script>
+  <script src="module/app.resource.js"></script>
+  <script src="module/app.run.js"></script>
+  <script src="module/dashboard/dashboard.controller.js"></script>
+  <script src="module/dashboard/dashboard.factory.js"></script>
+  <script src="module/questions/question.service.js"></script>
+  <script src="module/questions/questions.directive.js"></script>
+  <script src="module/questions/questions.controller.js"></script>
+  <script src="module/answers/answers.service.js"></script>
+  <script src="module/answers/answers.controller.js"></script>
+<script type="text/javascript">
+
+</script>
+</body>
+</html>

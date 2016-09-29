@@ -1,0 +1,116 @@
+/* app css stylesheet */
+.header{
+  background-image: url("data/images/Page background.png");
+  background-repeat:no-repeat;
+  background-size:cover;
+  padding-left: 10px;
+}
+.body-content{
+  min-height: 550px;
+
+}
+.footer{
+  text-align: right;
+  padding:10px;
+  background-image: url("data/images/Page background.png");
+  background-repeat:no-repeat;
+  background-size:cover;
+}
+.subject-body {
+
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+  margin-top: 30px;
+  margin-right: 10px;
+  margin-left: 10px;
+  margin-bottom: 30px;
+  max-width: 370px;
+
+}
+.image-div{
+
+  height: 150px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+  width: 86%;
+  background-size: 100%;
+  margin: 20px;
+  height: 150px;
+}
+
+.subject-heading{
+  padding-left: 10px;
+  padding-top: 10px;
+  font-size: 20px;
+  font-weight: bold;
+}
+.subject-footer{
+  padding-left: 10px;
+}
+.question-body{
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+  margin: 20px;
+  padding-top: 20px;
+  font-size: 20px;
+
+
+}
+.topic-heading{
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+  margin: 10px;
+  text-align: center;
+  color:#DAA520;
+  font-size: 25px;
+  font-weight: bold;
+}
+.question-p{
+  color: red;
+}
+.answer-desc{
+  color: darkgreen;
+}
+.sub-heading{
+  color:darkorange;
+}
+.key-people-hover:hover {
+  border: 1px solid #1affff;
+  box-shadow: 1px 1px 10px 7px #99ffff;
+  /* padding: 8px;*/
+}
+.key-people-hover {
+  border: 1px solid transparent;
+  border-radius: 3px;
+
+}
+.operation-div{
+
+  text-align: right;
+  padding: 20px;
+  border: solid;
+  border-left: hidden;
+  border-top: hidden;
+  border-right: hidden;
+  border-width: 1px;
+}
+.vertical-align-center {
+  /* To center vertically */
+  vertical-align: middle;
+}
+.center-modal {
+  position: fixed;
+  top: 10%;
+  left: 18.5%;
+  z-index: 1050;
+  width: 80%;
+  margin-left: -10%;
+}
+a,u{
+  text-decoration: none;
+}
+

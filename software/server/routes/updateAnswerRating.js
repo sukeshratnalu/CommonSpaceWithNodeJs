@@ -1,11 +1,11 @@
 /**
- * Created by semanticbits on 26/9/16.
+ * Created by semanticbits on 27/9/16.
  */
-var updateQuestionRating=function(app,questions){
-    /*updating questions rating*/
-    app.put('/updateQuestionRating',function(req,res){
-        questions.update(
-            { _id: req.body.Q_id },
+var updateAnswerRating=function(app,answers){
+/*updating answer rating*/
+    app.put('/updateAnswerRating',function(req,res){
+        answers.update(
+            { _id: req.body.a_id },
             {
                 rate : req.body.rating
             },
@@ -22,4 +22,4 @@ var updateQuestionRating=function(app,questions){
 
     });
 };
-module.exports=updateQuestionRating;
+module.exports=updateAnswerRating;

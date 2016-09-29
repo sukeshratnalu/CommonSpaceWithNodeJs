@@ -1,18 +1,14 @@
-<div>
-    <button type="button" class="btn-primary" style="height: 35px;" ng-click="vm.addTopics();">
-        <span class="glyphicon glyphicon-plus-sign"></span>
-        Add New Topic
-    </button>
-</div>
+
 <div class="container ">
     <div class="row" >
+
         <div class="col-md-4 subject-body key-people-hover" ng-repeat="topics in vm.topics">
-            <a ui-sref="question({id: topics._id})">
+            <a ui-sref="question({id: topics._id,name:topics.topicName })" style="text-decoration: none;">
                 <div class="row subject-heading" >{{topics.topicName}}</div>
                 <div class="row image-div {{topics.topicName}}" id="img-id">
                 </div>
                 <div class="row subject-footer" >
-                    <label>total Questions : </label>
+                    total Questions :<label ng-bind="vm.getTotalQuestion(topics._id);"> </label>
                 </div>
             </a>
         </div>

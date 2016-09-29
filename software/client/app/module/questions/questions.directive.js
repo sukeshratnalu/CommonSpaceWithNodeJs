@@ -2,23 +2,42 @@
  * Created by semanticbits on 6/9/16.
  */
 (function(){
-    angular.module('commonSpace')
+    angular.module('CommonSpace')
         .directive('topAnswer',topAnswer);
-    topAnswer.$inject=['$rootScope','answerService'];
-    function topAnswer($rootScope,answerService){
+    topAnswer.$inject=['$rootScope','answerService','$timeout'];
+    function topAnswer($rootScope,answerService,$timeout){
         var directive = {
             link: link,
             templateUrl: 'partials/topAnswer.html',
             restrict: 'EA',
             scope:{
-                name:'@',
-                question:'@'
+                id:'@'
 
             }
         };
         return directive;
         function link(scope) {
-            scope.topAnswer=answerService.readTopAnswer(scope.name,scope.question);
+            //logic for getting top answer
+            answerService.readanswersById(scope.id).then(function(response){
+                var answers=response;
+                var topicAnswers=[];
+                var answer=[];
+                angular.forEach(answers,function(data){
+                    topicAnswers.push(data)
+                });
+                //logic for sorting
+                topicAnswers.sort(function(a, b) {
+                    return parseInt(b.rate) - parseInt(a.rate);
+                });
+                angular.forEach(topicAnswers,function(data){
+                    answer.push(data.answer);
+                });
+                scope.topAnswer=answer[0];
+                scope.totalAnswer=answer.length;
+
+            });
+
+
         }
     }
 }());

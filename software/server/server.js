@@ -9,7 +9,6 @@ var mongoose = require('mongoose');                     // mongoose for mongodb
 var morgan = require('morgan');             // log requests to the console (express4)
 var bodyParser = require('body-parser');    // pull information from HTML POST (express4)
 var methodOverride = require('method-override'); // simulate DELETE and PUT (express4)
-
 //connecting with DataBase
 require('./model/db');
 //creating collection
@@ -17,7 +16,8 @@ var subjects = require('./model/subjectModel');
 var questions=require('./model/questionModel');
 var answers=require('./model/answerModel');
 
-app.use(express.static(__dirname + '../../client/app'));
+/*app.use(express.static(__dirname + '../../client/app'));*/
+app.use(express.static(_dirname+'./views'));
 app.use(morgan('dev'));                                         // log every request to the console
 app.use(bodyParser.urlencoded({'extended':'true'}));            // parse application/x-www-form-urlencoded
 app.use(bodyParser.json());                                     // parse application/json
@@ -31,7 +31,7 @@ require('./routes/getAllTopics')(app,subjects);
 require('./routes/getQuestionsById')(app,questions);
 require('./routes/updateQuestionsRating')(app,questions);
 //starting server
-var server = app.listen(3500, function () {
+var server = app.listen(3500, 'localhost', function () {
 
     var host = server.address().address;
     var port = server.address().port;

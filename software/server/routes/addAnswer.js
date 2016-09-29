@@ -2,12 +2,7 @@
  * Created by semanticbits on 21/9/16.
  */
 var addAnswer=function(app,answer){
-
-    // create todo and send back all todos after creation
     app.post('/addAnswer', function(req, res) {
-
-        // create a todo, information comes from AJAX request from Angular
-        console.log(req.body);
         answer.create({
             Q_id:req.body.questionId,
             answer:req.body.form_answer,
@@ -26,7 +21,6 @@ var addAnswer=function(app,answer){
                 res.json(answers);
             });
         });
-
     });
 };
 module.exports=addAnswer;
