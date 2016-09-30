@@ -91,5 +91,5 @@ function onListening() {
     ? 'pipe ' + addr
     : 'port ' + addr.port;
   debug('Listening on ' + bind);
-  console.log("Example app listening at http://%s:%s", host, port);
+  console.log("Example application listening at http://%s:%s", host, port);
 }

@@ -16,8 +16,8 @@ var subjects = require('./model/subjectModel');
 var questions=require('./model/questionModel');
 var answers=require('./model/answerModel');
 
-/*app.use(express.static(__dirname + '../../client/app'));*/
-app.use(express.static(_dirname+'./views'));
+app.use(express.static(__dirname + '../../client/app'));
+
 app.use(morgan('dev'));                                         // log every request to the console
 app.use(bodyParser.urlencoded({'extended':'true'}));            // parse application/x-www-form-urlencoded
 app.use(bodyParser.json());                                     // parse application/json
@@ -30,12 +30,15 @@ require('./routes/addSubject')(app,subjects);
 require('./routes/getAllTopics')(app,subjects);
 require('./routes/getQuestionsById')(app,questions);
 require('./routes/updateQuestionsRating')(app,questions);
+require('./routes/getAnswersById')(app,answers);
+require('./routes/updateAnswerRating')(app,answers);
+require('./routes/getAllQuestions')(app,questions);
 //starting server
 var server = app.listen(3500, 'localhost', function () {
 
     var host = server.address().address;
     var port = server.address().port;
 
-    console.log("Example app listening at http://%s:%s", host, port)
+    console.log("Example application listening at http://%s:%s", host, port)
 
 });
