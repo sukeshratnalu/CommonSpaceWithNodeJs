@@ -16,7 +16,11 @@ var subjects = require('./model/subjectModel');
 var questions=require('./model/questionModel');
 var answers=require('./model/answerModel');
 
-app.use(express.static(__dirname + '../../client/app'));
+app.use(express.static(__dirname + '/../client/app'));
+/*app.get('*', function(req, res) {
+    res.sendFile(__dirname + '../../client/app/index.html');
+});*/
+
 
 app.use(morgan('dev'));                                         // log every request to the console
 app.use(bodyParser.urlencoded({'extended':'true'}));            // parse application/x-www-form-urlencoded
@@ -33,6 +37,9 @@ require('./routes/updateQuestionsRating')(app,questions);
 require('./routes/getAnswersById')(app,answers);
 require('./routes/updateAnswerRating')(app,answers);
 require('./routes/getAllQuestions')(app,questions);
+/*app.get('*', function(req, res) {
+    res.sendFile(path.resolve(__dirname+'/../client/app/index.html'));
+});*/
 //starting server
 var server = app.listen(3500, 'localhost', function () {
 
