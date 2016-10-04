@@ -2,6 +2,7 @@
  * Created by semanticbits on 21/9/16.
  */
 var addAnswer=function(app,answer){
+    console.log('I am in add answer');
     app.post('/addAnswer', function(req, res) {
         answer.create({
             Q_id:req.body.questionId,

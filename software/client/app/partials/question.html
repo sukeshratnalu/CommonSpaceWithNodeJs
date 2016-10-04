@@ -3,7 +3,7 @@
         <div class="col-md-1"></div>
         <div class="col-md-3 topic-heading"><p>{{qm.topicName}}</p></div>
         <div class="col-md-5"></div>
-        <a ui-sref="dashboard"><div class="col-md-2 topic-heading">Back</div></a>
+        <a ui-sref="topics"><div class="col-md-2 topic-heading">Back</div></a>
         <div class="col-md-1"></div>
     </div>
     <div class="row">
@@ -12,7 +12,7 @@
                 <div class="col-md-2"></div>
 
                 <div class="col-md-8 question-body">
-                    <a  ui-sref="answer({id: questions._id,name:qm.topicName,question:questions.question})"><p class="question-p">{{questions.question}}</p>
+                    <a  ui-sref="answer({id: questions._id,name:qm.topicName,question:questions.question})" style="text-decoration: none;"><p class="question-p">{{questions.question}}</p>
                     <div class="row">
                         <div class="col-md-12">
                             <top-answer id="{{questions._id}}"></top-answer>

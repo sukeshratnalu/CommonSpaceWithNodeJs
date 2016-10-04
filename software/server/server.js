@@ -9,12 +9,15 @@ var mongoose = require('mongoose');                     // mongoose for mongodb
 var morgan = require('morgan');             // log requests to the console (express4)
 var bodyParser = require('body-parser');    // pull information from HTML POST (express4)
 var methodOverride = require('method-override'); // simulate DELETE and PUT (express4)
+var jwt        = require("jsonwebtoken");
 //connecting with DataBase
 require('./model/db');
 //creating collection
 var subjects = require('./model/subjectModel');
 var questions=require('./model/questionModel');
 var answers=require('./model/answerModel');
+
+var User     = require('./model/userModel');
 
 app.use(express.static(__dirname + '/../client/app'));
 /*app.get('*', function(req, res) {
@@ -28,6 +31,44 @@ app.use(bodyParser.json());                                     // parse applica
 app.use(bodyParser.json({ type: 'application/vnd.api+json' })); // parse application/vnd.api+json as json
 app.use(methodOverride());
 
+app.use(function(req, res, next) {
+    res.setHeader('Access-Control-Allow-Origin', '*');
+    res.setHeader('Access-Control-Allow-Methods', 'GET, POST');
+    res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type, Authorization');
+    next();
+});
+app.get('/me', ensureAuthorized, function(req, res) {
+    User.findOne({token: req.token}, function(err, user) {
+        if (err) {
+            res.json({
+                type: false,
+                data: "Error occured: " + err
+            });
+        } else {
+            res.json({
+                type: true,
+                data: user
+            });
+        }
+    });
+});
+function ensureAuthorized(req, res, next) {
+    var bearerToken;
+    var bearerHeader = req.headers["authorization"];
+    if (typeof bearerHeader !== 'undefined') {
+        var bearer = bearerHeader.split(" ");
+        bearerToken = bearer[1];
+        req.token = bearerToken;
+        next();
+    } else {
+        res.send(403);
+    }
+}
+
+process.on('uncaughtException', function(err) {
+    console.log(err);
+});
+
 require('./routes/addAnswer')(app,answers);
 require('./routes/addQuestion')(app,questions);
 require('./routes/addSubject')(app,subjects);
@@ -37,9 +78,10 @@ require('./routes/updateQuestionsRating')(app,questions);
 require('./routes/getAnswersById')(app,answers);
 require('./routes/updateAnswerRating')(app,answers);
 require('./routes/getAllQuestions')(app,questions);
-/*app.get('*', function(req, res) {
-    res.sendFile(path.resolve(__dirname+'/../client/app/index.html'));
-});*/
+require('./routes/user/user.authenticate')(app,User);
+require('./routes/user/user.signin')(app,User,jwt);
+
+
 //starting server
 var server = app.listen(3500, 'localhost', function () {
 

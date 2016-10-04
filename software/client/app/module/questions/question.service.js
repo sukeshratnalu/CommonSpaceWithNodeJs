@@ -2,7 +2,7 @@
  * Created by semanticbits on 7/9/16.
  */
 (function(){
-    angular.module('CommonSpace')
+    angular.module('CommonSpace.question')
         .service('questionService',questionService);
     questionService.$inject=['$rootScope','$q','api','$timeout'];
     function questionService($rootScope,$q,api,$timeout){

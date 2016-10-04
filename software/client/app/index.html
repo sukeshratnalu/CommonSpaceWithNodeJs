@@ -18,6 +18,7 @@
   <link rel="stylesheet" href="bower_components/angularjs-datepicker/dist/angular-datepicker.min.css">
   <link rel="stylesheet" href="bower_components/angular-input-stars-directive/angular-input-stars.css">
   <link rel="stylesheet" href="app.css">
+  <link rel="stylesheet" href="lib/loading-bar.css">
   <script src="bower_components/html5-boilerplate/dist/js/vendor/modernizr-2.8.3.min.js"></script>
 </head>
 <body>
@@ -26,15 +27,6 @@
     <div class="col-md-6"><h1>Common Space</h1></div>
   </div>
 </div>
-<div class="container operation-div">
-  <div class="row" ng-controller="dashboardController as vm">
-    <button type="button" class="btn-primary" style="height: 35px;" ng-click="vm.addTopics();">
-      <span class="glyphicon glyphicon-plus-sign"></span>
-      Add New Topic
-    </button>
-  </div>
-</div>
-
 <div class="body-content" ui-view></div>
 <div class="row footer">
   <div class="col-md-12">
@@ -54,17 +46,28 @@
   <script src="bower_components/angular-input-stars-directive/angular-input-stars.js"></script>
 
 
-
+  <script src="lib/loading-bar.js"></script>
+  <script src="lib/ngStorage.js"></script>
   <script src="module/app.module.js"></script>
   <script src="module/app.config.js"></script>
   <script src="module/app.resource.js"></script>
   <script src="module/app.run.js"></script>
-  <script src="module/dashboard/dashboard.controller.js"></script>
-  <script src="module/dashboard/dashboard.factory.js"></script>
+  <script src="module/user/user.module.js"></script>
+  <script src="module/user/user.controller.js"></script>
+  <script src="module/user/user.service.js"></script>
+  <script src="module/topics/topics.module.js"></script>
+  <script src="module/topics/topics.controller.js"></script>
+  <script src="module/topics/topics.factory.js"></script>
+  <script src="module/questions/questions.module.js"></script>
   <script src="module/questions/question.service.js"></script>
-  <script src="module/questions/questions.directive.js"></script>
   <script src="module/questions/questions.controller.js"></script>
+  <script src="module/answers/answers.module.js"></script>
   <script src="module/answers/answers.service.js"></script>
   <script src="module/answers/answers.controller.js"></script>
+  <script src="module/component/component.module.js"></script>
+  <script src="module/component/topAnswer.component.js"></script>
+  <script src="module/authontication/authentication.module.js"></script>
+  <script src="module/authontication/authentication.controller.js"></script>
+  <script src="module/authontication/authentication.service.js"></script>
 </body>
 </html>

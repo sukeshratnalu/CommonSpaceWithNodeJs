@@ -2,7 +2,7 @@
  * Created by semanticbits on 6/9/16.
  */
 (function(){
-    angular.module('CommonSpace')
+    angular.module('CommonSpace.question')
         .controller('questionController',questionController);
     questionController.$inject=['$stateParams','questionService','$rootScope'];
     function questionController($stateParams,questionService,$rootScope){

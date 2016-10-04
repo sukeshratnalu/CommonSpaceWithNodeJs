@@ -6,7 +6,7 @@
   padding-left: 10px;
 }
 .body-content{
-  min-height: 550px;
+  min-height: 540px;
 
 }
 .footer{
@@ -90,7 +90,7 @@
 }
 .operation-div{
 
-  text-align: right;
+
   padding: 20px;
   border: solid;
   border-left: hidden;

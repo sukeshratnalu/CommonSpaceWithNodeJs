@@ -2,7 +2,7 @@
  * Created by semanticbits on 22/9/16.
  */
 (function(){
-    angular.module('CommonSpace')
+    angular.module('CommonSpace.topics')
         .controller('dashboardController',dashboardController);
     //injecting dependencies for controller.
     dashboardController.$inject=['dashboardFactory','$rootScope','questionService'];

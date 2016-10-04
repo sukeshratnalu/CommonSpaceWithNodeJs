@@ -2,7 +2,7 @@
  * Created by semanticbits on 27/9/16.
  */
 (function(){
-    angular.module('CommonSpace')
+    angular.module('CommonSpace.answer')
         .controller('answerController',answerController);
     answerController.$inject=['$stateParams','answerService'];
     function answerController($stateParams,answerService){

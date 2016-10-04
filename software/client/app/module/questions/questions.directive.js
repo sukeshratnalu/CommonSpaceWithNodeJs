@@ -1,11 +1,11 @@
 /**
  * Created by semanticbits on 6/9/16.
  */
-(function(){
-    angular.module('CommonSpace')
+/*(function(){
+    angular.module('CommonSpace.question')
         .directive('topAnswer',topAnswer);
-    topAnswer.$inject=['$rootScope','answerService','$timeout'];
-    function topAnswer($rootScope,answerService,$timeout){
+    topAnswer.$inject=['answerService'];
+    function topAnswer(answerService){
         var directive = {
             link: link,
             templateUrl: 'partials/topAnswer.html',
@@ -40,4 +40,4 @@
 
         }
     }
-}());
+}());*/
