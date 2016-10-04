@@ -2,8 +2,16 @@
  * Created by semanticbits on 4/10/16.
  */
 var userSignIn = function(app,User,jwt){
+    var nodemailer = require('nodemailer');
+    // create reusable transporter object using the default SMTP transport
+    var transporter = nodemailer.createTransport({
+        service: 'Gmail',
+        auth: {
+            user: 'sukeshkumar017@gmail.com', // Your email id
+            pass: '8895048246' // Your password
+        }
+    });
     app.post('/signin', function(req, res) {
-        console.log('Hi i m in sign in');
         User.findOne({email: req.body.email, password: req.body.password}, function(err, user) {
             if (err) {
                 res.json({
@@ -21,10 +29,7 @@ var userSignIn = function(app,User,jwt){
                     userModel.email = req.body.email;
                     userModel.password = req.body.password;
                     userModel.save(function(err, user) {
-                        console.log('generating token');
-                        console.log(user);
-                        user.token = jwt.sign(user, 'shhhhh');
-                        console.log(user.token);
+                        user.token = jwt.sign(user,'shhhhh');
                         user.save(function(err, user1) {
                             res.json({
                                 type: true,
@@ -32,7 +37,26 @@ var userSignIn = function(app,User,jwt){
                                 token: user1.token
                             });
                         });
-                    })
+                    });
+                    console.log('starting mail operation');
+                    // setup e-mail data with unicode symbols
+                    var mailOptions = {
+                        from: "Common Space", // sender address
+                        to: req.body.email,  // list of receivers
+                        subject: 'Notification ✔', // Subject line
+                        text: 'Your added to Common Space. Now you can see all topics', // plaintext body
+                        html: '<b>Your sucessfully registered to Common Space.<br> Now you can see all topics:http://127.0.0.1:3500<br>Thank you</b>' // html body
+                    };
+
+                    // send mail with defined transport object
+                    transporter.sendMail(mailOptions, function(error, info){
+                        if(error){
+                            console.log('error accured');
+                            return console.log(error);
+                        }
+                        console.log('Message sent: ' + info.response);
+                    });
+
                 }
             }
         });

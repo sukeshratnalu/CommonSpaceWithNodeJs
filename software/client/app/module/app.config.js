@@ -30,12 +30,14 @@
                     url:'/',
                     templateUrl: 'partials/signin.html',
                     controller: 'HomeCtrl',
-                    hideMenus: true
+                    hideMenus: true,
+                    controllerAs:'um'
                 })
                 .state('signup', {
                     url:'/signup',
                     templateUrl: 'partials/signup.html',
-                    controller: 'HomeCtrl'
+                    controller: 'HomeCtrl',
+                    controllerAs:'um'
                 })
 
 

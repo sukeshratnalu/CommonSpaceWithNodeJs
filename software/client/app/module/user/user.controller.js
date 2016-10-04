@@ -1,14 +1,22 @@
 /**
  * Created by semanticbits on 3/10/16.
  */
-angular.module('CommonSpace.user')
-    .controller('HomeCtrl', ['$rootScope', '$scope', '$location', '$localStorage', 'userFactory', function($rootScope, $scope, $location, $localStorage, userFactory) {
+(function(){
+    angular.module('CommonSpace.user')
+        .controller('HomeCtrl',HomeCtrl);
 
-        $scope.signin = function() {
+    HomeCtrl.$inject=['$rootScope', '$scope', '$location', '$localStorage', 'userFactory'];
+
+    function HomeCtrl($rootScope, $scope, $location, $localStorage, userFactory){
+        var um=this;
+        um.signin=signin;
+        um.signup=signup;
+        um.logout=logout;
+        function signin(){
             var formData = {
-                email: $scope.email,
-                password: $scope.password
-            }
+                email: um.email,
+                password: um.password
+            };
 
             userFactory.signin(formData, function(res) {
                 if (res.type == false) {
@@ -22,14 +30,13 @@ angular.module('CommonSpace.user')
                 }
             }, function() {
                 $rootScope.error = 'Failed to signin';
-            })
-        };
-
-        $scope.signup = function() {
+            });
+        }
+        function signup(){
             var formData = {
-                email: $scope.email,
-                password: $scope.password
-            }
+                email: um.email,
+                password: um.password
+            };
 
             userFactory.save(formData, function(res) {
                 if (res.type == false) {
@@ -41,8 +48,20 @@ angular.module('CommonSpace.user')
             }, function() {
                 $rootScope.error = 'Failed to signup';
             })
-        };
-
+        }
+        function logout(){
+            userFactory.logout(function() {
+                window.location = "/"
+            }, function() {
+                alert("Failed to logout!");
+            });
+        }
+        um.token = $localStorage.token;
+    }
+}());
+/*
+angular.module('CommonSpace.user')
+    .controller('HomeCtrl', ['$rootScope', '$scope', '$location', '$localStorage', 'userFactory', function($rootScope, $scope, $location, $localStorage, userFactory) {
         $scope.me = function() {
             userFactory.me(function(res) {
                 $scope.myDetails = res;
@@ -50,16 +69,6 @@ angular.module('CommonSpace.user')
                 $rootScope.error = 'Failed to fetch details';
             })
         };
-
-        $scope.logout = function() {
-            userFactory.logout(function() {
-                window.location = "/"
-            }, function() {
-                alert("Failed to logout!");
-            });
-        };
-        $scope.token = $localStorage.token;
-    }])
 
     .controller('MeCtrl', ['$rootScope', '$scope', '$location', 'userFactory', function($rootScope, $scope, $location, userFactory) {
 
@@ -69,3 +78,4 @@ angular.module('CommonSpace.user')
             $rootScope.error = 'Failed to fetch details';
         })
     }]);
+*/
