@@ -20,45 +20,45 @@
             'addAnswers':{
                 method:'POST',
                 isArray:true,
-                url:'/addAnswer'
+                url:'/answer/add'
             },
             'addQuestions':{
                 method:'POST',
                 isArray:true,
-                url:'/addQuestion'
+                url:'/questions/add'
             },
             'postTopics':{
                 method:'POST',
                 isArray:true,
-                url:'/addTopic'
+                url:'/topic/add'
             },
             'getTopics':{
                 method:'GET',
                 isArray:true,
-                url:'/getAllTopic'
+                url:'/topic/listTopic'
             },
             'getQuestions':{
                 method:'POST',
                 isArray:true,
-                url:'/getQuestion'
+                url:'/question/listById'
             },
             'updateQuestionRating':{
                 method:'PUT',
-                url:'/updateQuestionRating'
+                url:'/question/updateRating'
             },
             'getAnswers':{
                 method:'POST',
                 isArray:true,
-                url:'/getAnswer'
+                url:'/answer/listById'
             },
             'updateAnswerRating':{
                 method:'PUT',
-                url:'/updateAnswerRating'
+                url:'/answer/updateRating'
             },
             'getAllQuestions':{
                 method:'GET',
                 isArray:true,
-                url:'/getAllQuestions'
+                url:'/question/listQuestions'
             }
 
         }

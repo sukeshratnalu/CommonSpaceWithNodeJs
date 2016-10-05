@@ -12,6 +12,7 @@
         um.signin=signin;
         um.signup=signup;
         um.logout=logout;
+        //function for sign in operation
         function signin(){
             var formData = {
                 email: um.email,
@@ -32,6 +33,7 @@
                 $rootScope.error = 'Failed to signin';
             });
         }
+        //function for signup operation
         function signup(){
             var formData = {
                 email: um.email,
@@ -49,6 +51,7 @@
                 $rootScope.error = 'Failed to signup';
             })
         }
+        //function for logout operation
         function logout(){
             userFactory.logout(function() {
                 window.location = "/"

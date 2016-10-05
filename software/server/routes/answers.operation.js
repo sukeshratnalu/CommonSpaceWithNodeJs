@@ -1,0 +1,54 @@
+/**
+ * Created by semanticbits on 5/10/16.
+ */
+var answers=require('../model/answerModel');
+var answer={
+    insertAnswer:function(req,res){
+        answers.create({
+            Q_id:req.body.questionId,
+            answer:req.body.form_answer,
+            author:req.body.form_author,
+            rate:req.body.form_rate,
+            answeredDate:req.body.form_answerDate,
+            done : false
+        }, function(err, answer) {
+            if (err)
+                res.send(err);
+
+            // get and return all the todos after you create another
+            answers.find(function(err, answer) {
+                if (err)
+                    res.send(err);
+                res.json(answer);
+            });
+        });
+    },
+    getAnswersByTopicId:function(req,res){
+        answers.find({Q_id:req.body.id},function (err, answer) {
+            if (err) {
+                next(err);
+            } else {
+                res.send(JSON.stringify(answer));
+                res.end();
+            }
+        })
+    },
+    updateAnswerRating:function(req,res){
+        answers.update(
+            { _id: req.body.a_id },
+            {
+                rate : req.body.rating
+            },
+            { upsert: true },function(err,data){
+                if(err){
+                    console.log(err);
+                }
+                else {
+                    console.log(data);
+                    res.send(data);
+                }
+            }
+        )
+    }
+};
+module.exports=answer;

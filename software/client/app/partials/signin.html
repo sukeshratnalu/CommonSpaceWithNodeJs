@@ -6,17 +6,19 @@
                 <strong>Signin</strong>
             </div>
             <div class="panel-body">
-                <form class="form-horizontal" role="form" ng-submit="um.signin()">
+                <form name="form" class="form-horizontal" role="form" ng-submit="um.signin()">
                     <div class="form-group">
                         <label for="email" class="col-md-2 control-label">Email</label>
                         <div class="col-md-10">
-                            <input type="email" class="form-control" id="email" placeholder="Email" ng-model="um.email">
+                            <input type="email" name="username" class="form-control" id="email" placeholder="Email" ng-model="um.email" required />
+                            <span ng-show="form.username.$dirty && form.username.$error.required" class="help-block" style="color: red">Username is required</span>
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="password" class="col-md-2 control-label">Password</label>
                         <div class="col-md-10">
-                            <input type="password" class="form-control" id="password" placeholder="Password" ng-model="um.password">
+                            <input type="password" name="password" class="form-control" id="password" placeholder="Password" ng-model="um.password" required />
+                            <span ng-show="form.password.$dirty && form.password.$error.required" class="help-block" style="color: red">Password is required</span>
                         </div>
                     </div>
                     <div class="form-group">

@@ -1,10 +1,12 @@
 /**
  * Created by semanticbits on 3/10/16.
  */
-'use strict';
-
-angular.module('CommonSpace.user')
-    .factory('userFactory', ['$http', '$localStorage', function($http, $localStorage){
+(function(){
+    'use strict';
+    angular.module('CommonSpace.user')
+        .factory('userFactory',userFactory);
+    userFactory.$inject=['$http', '$localStorage'];
+    function userFactory($http, $localStorage){
         var baseUrl = "your_service_url";
         function changeUser(user) {
             angular.extend(currentUser, user);
@@ -58,4 +60,5 @@ angular.module('CommonSpace.user')
             }
         };
     }
-    ]);
+}());
+

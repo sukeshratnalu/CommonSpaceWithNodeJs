@@ -12,10 +12,6 @@ var methodOverride = require('method-override'); // simulate DELETE and PUT (exp
 var jwt        = require("jsonwebtoken");
 //connecting with DataBase
 require('./model/db');
-//creating collection
-var subjects = require('./model/subjectModel');
-var questions=require('./model/questionModel');
-var answers=require('./model/answerModel');
 
 var User     = require('./model/userModel');
 
@@ -68,16 +64,9 @@ function ensureAuthorized(req, res, next) {
 process.on('uncaughtException', function(err) {
     console.log(err);
 });
+//injecting mai route for all operations
+require('./routes/mainRoute')(app);
 
-require('./routes/addAnswer')(app,answers);
-require('./routes/addQuestion')(app,questions);
-require('./routes/addSubject')(app,subjects);
-require('./routes/getAllTopics')(app,subjects);
-require('./routes/getQuestionsById')(app,questions);
-require('./routes/updateQuestionsRating')(app,questions);
-require('./routes/getAnswersById')(app,answers);
-require('./routes/updateAnswerRating')(app,answers);
-require('./routes/getAllQuestions')(app,questions);
 require('./routes/user/user.authenticate')(app,User);
 require('./routes/user/user.signin')(app,User,jwt);
 

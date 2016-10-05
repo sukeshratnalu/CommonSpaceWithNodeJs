@@ -12,7 +12,7 @@ var userSignIn = function(app,User,jwt){
         }
     });
     app.post('/signin', function(req, res) {
-        User.findOne({email: req.body.email, password: req.body.password}, function(err, user) {
+        User.findOne({email: req.body.email}, function(err, user) {
             if (err) {
                 res.json({
                     type: false,
@@ -41,11 +41,11 @@ var userSignIn = function(app,User,jwt){
                     console.log('starting mail operation');
                     // setup e-mail data with unicode symbols
                     var mailOptions = {
-                        from: "Common Space", // sender address
+                        from: '"Common Space" <sukeshkumar017@gmail.com>', // sender address
                         to: req.body.email,  // list of receivers
                         subject: 'Notification ✔', // Subject line
                         text: 'Your added to Common Space. Now you can see all topics', // plaintext body
-                        html: '<b>Your sucessfully registered to Common Space.<br> Now you can see all topics:http://127.0.0.1:3500<br>Thank you</b>' // html body
+                        html: '<b>Hi,<br>&nbsp;&nbsp;Your sucessfully registered to Common Space.<br> Now you can see all topics:http://127.0.0.1:3500<br>Thank you</b>' // html body
                     };
 
                     // send mail with defined transport object
