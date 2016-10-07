@@ -3,8 +3,8 @@
  */
 var question=require('../model/questionModel');
 var questions={
+    /*inserting questions to collection*/
     insertQuestion:function(req,res){
-
         question.create({
             t_id:req.body.form_topicId,
             question:req.body.form_question,
@@ -23,6 +23,7 @@ var questions={
             });
         });
     },
+    /*list all questions from collection*/
     getQuestions:function(req,res){
         question.find(function (err, questions) {
             if (err) {
@@ -33,6 +34,7 @@ var questions={
             }
         })
     },
+    /*getting questions from collection by using topic id*/
     getQuestionsByTopicId:function(req,res){
         question.find({t_id:req.body.id},function (err, questions) {
             if (err) {
@@ -43,6 +45,7 @@ var questions={
             }
         })
     },
+    /*Updating Question rating  by using id*/
     updateQuestionRating:function(req,res){
         question.update(
             { _id: req.body.Q_id },

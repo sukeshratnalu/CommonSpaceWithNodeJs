@@ -8,12 +8,8 @@
     function dashboardFactory($uibModal,api,$q,$timeout,$rootScope){
         var newTopic={
             name:''
-
         };
         var topic=[];
-
-
-
         var factory={
 
             openAddAnswerModal:openAddAnswerModal,
@@ -125,7 +121,7 @@
                             for(var j=1;j<=qd.answerNumber;j++){
                                 openAddAnswerModal(question_id);
                             }
-                        }, 2000);
+                        }, 1000);
                         $uibModalInstance.dismiss();
                     };
                     qd.cancel = function () {
@@ -139,14 +135,14 @@
             return subject;
         }
         function openAddAnswerModal(question_id){
-            console.log(question_id)
+            console.log(question_id);
             var answers={
                 questionId:question_id,
                 form_answer:'',
                 form_author:'',
                 form_rate:0,
                 form_answerDate:''
-            }
+            };
             var modalInstance=$uibModal.open({
                 templateUrl:'partials/addAnswer.html',
                 windowClass: 'center-modal',
@@ -171,7 +167,7 @@
                                deferred.reject(error);
                            }
                            answers=deferred.promise;
-                       }, 2000);
+                       }, 1000);
 
                         // The promise is returned to the caller
 

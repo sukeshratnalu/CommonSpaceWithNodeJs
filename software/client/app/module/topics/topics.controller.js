@@ -26,8 +26,7 @@
         function getAllTopic(){
             dashboardFactory.readTopics().then(function(response) {
                 // This is set when the promise is resolved.
-                $rootScope.allTopics = response;
-                vm.topics=$rootScope.allTopics;
+                vm.topics=response;
 
             });
         }
@@ -36,7 +35,7 @@
         function getAllQuestion() {
             questionService.readAllQuestions().then(function (response) {
                 // This is set when the promise is resolved.
-                $rootScope.allQuestions = response;
+                vm.allQuestions = response;
 
             })
         }
@@ -46,7 +45,7 @@
             var questions=[];
             var questionsById=[];
             var questionLength=0;
-            angular.forEach($rootScope.allQuestions,function(data){
+            angular.forEach(vm.allQuestions,function(data){
                 questions.push(data);
             });
             angular.forEach(questions,function(data){

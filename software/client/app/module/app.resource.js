@@ -17,16 +17,6 @@
     };
     var getActions=function(){
         return{
-            'addAnswers':{
-                method:'POST',
-                isArray:true,
-                url:'/answer/add'
-            },
-            'addQuestions':{
-                method:'POST',
-                isArray:true,
-                url:'/questions/add'
-            },
             'postTopics':{
                 method:'POST',
                 isArray:true,
@@ -37,6 +27,16 @@
                 isArray:true,
                 url:'/topic/listTopic'
             },
+            'addQuestions':{
+                method:'POST',
+                isArray:true,
+                url:'/questions/add'
+            },
+            'getAllQuestions':{
+                method:'GET',
+                isArray:true,
+                url:'/question/listQuestions'
+            },
             'getQuestions':{
                 method:'POST',
                 isArray:true,
@@ -46,6 +46,11 @@
                 method:'PUT',
                 url:'/question/updateRating'
             },
+            'addAnswers':{
+                method:'POST',
+                isArray:true,
+                url:'/answer/add'
+            },
             'getAnswers':{
                 method:'POST',
                 isArray:true,
@@ -54,11 +59,6 @@
             'updateAnswerRating':{
                 method:'PUT',
                 url:'/answer/updateRating'
-            },
-            'getAllQuestions':{
-                method:'GET',
-                isArray:true,
-                url:'/question/listQuestions'
             }
 
         }

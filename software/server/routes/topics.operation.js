@@ -3,6 +3,7 @@
  */
 var Topics = require('../model/subjectModel');
 var topics={
+    /*inserting topics to collection*/
     insertTopics:function(req,res){
 
         Topics.create({
@@ -21,6 +22,7 @@ var topics={
             });
         });
     },
+    /*list topics from collection*/
     getTopics:function(req,res){
         Topics.find(function (err, subject) {
             if (err) {

@@ -3,6 +3,7 @@
  */
 var answers=require('../model/answerModel');
 var answer={
+    /*inserting answer to collection*/
     insertAnswer:function(req,res){
         answers.create({
             Q_id:req.body.questionId,
@@ -14,8 +15,6 @@ var answer={
         }, function(err, answer) {
             if (err)
                 res.send(err);
-
-            // get and return all the todos after you create another
             answers.find(function(err, answer) {
                 if (err)
                     res.send(err);
@@ -23,6 +22,7 @@ var answer={
             });
         });
     },
+    /*getting answers from collection by using question id*/
     getAnswersByTopicId:function(req,res){
         answers.find({Q_id:req.body.id},function (err, answer) {
             if (err) {
@@ -33,6 +33,7 @@ var answer={
             }
         })
     },
+    /*updating answer rating by id*/
     updateAnswerRating:function(req,res){
         answers.update(
             { _id: req.body.a_id },

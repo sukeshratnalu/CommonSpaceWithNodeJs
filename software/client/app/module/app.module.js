@@ -15,5 +15,7 @@
         'ngResource',
         'angular-input-stars',
         'ngStorage',
-        'angular-loading-bar']);
+        'angular-loading-bar',
+        'mm.acl'
+    ]);
 }());

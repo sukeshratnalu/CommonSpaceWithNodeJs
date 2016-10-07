@@ -8,7 +8,7 @@
             /*$locationProvider.hashPrefix('!');*/
             $urlRouterProvider.otherwise('/');
             $stateProvider
-                .state('/topics', {
+                .state('topics', {
                     url: '/topics',
                     templateUrl: 'partials/dashboard.html',
                     controller: 'dashboardController',
