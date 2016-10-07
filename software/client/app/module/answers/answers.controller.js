@@ -13,17 +13,23 @@
         am.getAnswersByQid=getAnswersByQid;
         am.updateAnsRating=updateAnsRating;
         function getAnswersByQid(){
-            answerService.readanswersById(am.QuestionId).then(function(response) {
-                // This is set when the promise is resolved.
+            answerService.readanswersById(am.QuestionId).then(listAnswersByQuestionIdSuccess).catch(listAnswersByQuestionIdFail);
+            function listAnswersByQuestionIdSuccess(response){
                 am.answers=response;
-
-            });
+            }
+            function listAnswersByQuestionIdFail(error){
+                console.log(error);
+            }
         }
         am.getAnswersByQid();
         function updateAnsRating(id,rate){
-            answerService.updateAnswerRate(id,rate).then(function(response){
+            answerService.updateAnswerRate(id,rate).then(updateAnswerRateSuccess).catch(updateAnswerRateFail);
+            function updateAnswerRateSuccess(resonse){
                 am.getAnswersByQid();
-            });
+            }
+            function updateAnswerRateFail(error){
+                console.log(error);
+            }
         }
 
     }

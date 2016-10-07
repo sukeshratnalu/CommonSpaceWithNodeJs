@@ -11,8 +11,6 @@
             updateAnswerRate:updateAnswerRate
         };
         function readanswersById(Qid){
-            console.log("I m in answer service");
-            console.log(Qid);
             var deferred = $q.defer();
             var question={
                 id:Qid

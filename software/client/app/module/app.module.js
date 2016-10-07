@@ -16,6 +16,7 @@
         'angular-input-stars',
         'ngStorage',
         'angular-loading-bar',
+        'ngCookies',
         'mm.acl'
     ]);
 }());

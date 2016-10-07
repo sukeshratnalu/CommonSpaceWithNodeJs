@@ -21,23 +21,28 @@
 
         function addTopics(){
             dashboardFactory.addTopic();
+
         }
         //function for getting all topics from dashboardFactory
         function getAllTopic(){
-            dashboardFactory.readTopics().then(function(response) {
-                // This is set when the promise is resolved.
+            dashboardFactory.readTopics().then(listTopicsSuccess).catch(listTopicsFail);
+            function listTopicsSuccess(response){
                 vm.topics=response;
-
-            });
+            }
+            function listTopicsFail(error){
+                console.log(error);
+            }
         }
         vm.getAllTopic();
         //function for getting allQuestions from questionService
         function getAllQuestion() {
-            questionService.readAllQuestions().then(function (response) {
-                // This is set when the promise is resolved.
-                vm.allQuestions = response;
-
-            })
+            questionService.readAllQuestions().then(listQuestionSuccess).catch(listQuestionFail);
+            function listQuestionSuccess(response){
+                vm.allQuestions=response;
+            }
+            function listQuestionFail(error){
+                console.log(error);
+            }
         }
         vm.getAllQuestion();
         //function for getting total count of questions

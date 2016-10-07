@@ -15,13 +15,22 @@
                     controllerAs: 'vm'
                 })
                 .state('question',{
-                    url:'/question/:id?name',
+                    url:'/question',
+                    params: {
+                        id: null,
+                        name: null
+                    },
                     templateUrl:'partials/question.html',
                     controller:'questionController',
                     controllerAs:'qm'
                 })
                 .state('answer',{
-                    url:'/answer/:id?name?question',
+                    url:'/answer',
+                    params:{
+                        id:null,
+                        name:null,
+                        question:null
+                    },
                     templateUrl:'partials/answers.html',
                     controller:'answerController',
                     controllerAs:'am'
@@ -34,31 +43,43 @@
                     controllerAs:'um'
                 })
                 .state('signup', {
+                    resolve : {
+                        'acl' : ['$q', 'AclService', function($q, AclService){
+                            if(AclService.can('signup')){
+                                // Has proper permissions
+                                return true;
+                            } else {
+                                // Does not have permission
+                                return $q.reject('Unauthorized');
+                            }
+                        }]
+                    },
                     url:'/signup',
                     templateUrl: 'partials/signup.html',
                     controller: 'HomeCtrl',
                     controllerAs:'um'
-                })
+                });
+            $httpProvider.interceptors.push(['$q', '$location', '$localStorage', function($q, $location, $localStorage) {
+                return {
+                    'request': function (config) {
+                        config.headers = config.headers || {};
+                        if ($localStorage.token) {
+                            config.headers.Authorization = 'Bearer ' + $localStorage.token;
+                        }
+                        return config;
+                    },
+                    'responseError': function(response) {
+                        if(response.status === 401 || response.status === 403) {
+                            $location.path('/signin');
+                        }
+                        return $q.reject(response);
+                    }
+                };
+            }]);
 
 
         });
-    /*$httpProvider.interceptors.push(['$q', '$location', '$localStorage', function($q, $location, $localStorage) {
-        return {
-            'request': function (config) {
-                config.headers = config.headers || {};
-                if ($localStorage.token) {
-                    config.headers.Authorization = 'Bearer ' + $localStorage.token;
-                }
-                return config;
-            },
-            'responseError': function(response) {
-                if(response.status === 401 || response.status === 403) {
-                    $location.path('/signin');
-                }
-                return $q.reject(response);
-            }
-        };
-    }]);*/
+
 
 
 }());

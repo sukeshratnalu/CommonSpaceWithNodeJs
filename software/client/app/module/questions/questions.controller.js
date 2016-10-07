@@ -15,19 +15,26 @@
         qm.updateQRating=updateQRating;
         //function for getting questions from question service by topic id
         function getQuestionByTopic(){
-            questionService.readQuestions(qm.topicId).then(function(response) {
 
-                // This is set when the promise is resolved.
+            questionService.readQuestions(qm.topicId).then(readQuestionByTopicIdSuccess).catch(readQuestionByTopicIdFail);
+            function readQuestionByTopicIdSuccess(response){
                 qm.questions=response;
-            });
+            }
+            function readQuestionByTopicIdFail(error){
+                console.log(error);
+            }
 
         }
         qm.getQuestionByTopic();
         //functionn for updating question rating
         function updateQRating(_id,rate){
-            questionService.updateQuestionRate(_id,rate).then(function(response){
+            questionService.updateQuestionRate(_id,rate).then(updateQuestionRatingSuccess).catch(updateQuestionRatingFail);
+            function updateQuestionRatingSuccess(response){
                 qm.getQuestionByTopic();
-            });
+            }
+            function updateQuestionRatingFail(error){
+                console.log(error);
+            }
         }
 
     }

@@ -37,7 +37,8 @@
         function signup(){
             var formData = {
                 email: um.email,
-                password: um.password
+                password: um.password,
+                role:um.role
             };
 
             userFactory.save(formData, function(res) {
@@ -63,7 +64,7 @@
     }
 }());
 /*
-angular.module('CommonSpace.user')
+angular.module('CommonSpace.registerUser')
     .controller('HomeCtrl', ['$rootScope', '$scope', '$location', '$localStorage', 'userFactory', function($rootScope, $scope, $location, $localStorage, userFactory) {
         $scope.me = function() {
             userFactory.me(function(res) {

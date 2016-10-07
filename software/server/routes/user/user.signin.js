@@ -28,6 +28,7 @@ var userSignIn = function(app,User,jwt){
                     var userModel = new User();
                     userModel.email = req.body.email;
                     userModel.password = req.body.password;
+                    userModel.role=req.body.role;
                     userModel.save(function(err, user) {
                         user.token = jwt.sign(user,'shhhhh');
                         user.save(function(err, user1) {

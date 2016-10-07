@@ -59,6 +59,16 @@
             'updateAnswerRating':{
                 method:'PUT',
                 url:'/answer/updateRating'
+            },
+            'registerUser':{
+                method:'POST',
+                isArray:true,
+                url:'/user/signup'
+            },
+            'authonticateUser':{
+                method:'POST',
+                isArray:true,
+                url:'/user/authenticate'
             }
 
         }

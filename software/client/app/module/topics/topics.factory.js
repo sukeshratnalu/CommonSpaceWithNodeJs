@@ -33,18 +33,15 @@
                     cd.questionNumber;
                     cd.form_name;
                     var topic_id;
-                    console.log('I m i add topic modal');
-                    console.log($rootScope.allTopics);
-
                     cd.ok = function () {
                         newTopic.name=cd.form_name;
                         var deferred = $q.defer();
                         $timeout(function () {
-                            api.postTopics(newTopic).$promise.then(addingTodoCompleted).catch(addingTodoFailed);
-                            function addingTodoCompleted(response){
+                            api.postTopics(newTopic).$promise.then(addingTopicCompleted).catch(addingTopicFailed);
+                            function addingTopicCompleted(response){
                                 deferred.resolve(response);
                             }
-                            function addingTodoFailed(error){
+                            function addingTopicFailed(error){
                                 deferred.reject(error);
                             }
                             return deferred.promise;
@@ -60,8 +57,6 @@
                         });
                         $timeout(function () {
                             for(var i=1;i<=cd.questionNumber;i++){
-                                console.log('here calling question modal');
-                                console.log(topic_id);
                                 openAddQuestionModal(topic_id)
                             }
                         }, 1000);
@@ -111,8 +106,6 @@
 
                             angular.forEach(questions,function(data){
                                 question_id=data._id;
-                                console.log('returning question promices.....');
-                                console.log(question_id);
                             })
 
                         });
@@ -131,7 +124,7 @@
                 },
                 controllerAs:'qd'
             });
-            console.log(subject);
+
             return subject;
         }
         function openAddAnswerModal(question_id){
