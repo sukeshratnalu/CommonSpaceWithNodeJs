@@ -5,8 +5,8 @@
     'use strict';
     angular.module('CommonSpace.user')
         .factory('userFactory',userFactory);
-    userFactory.$inject=['$http', '$localStorage'];
-    function userFactory($http, $localStorage){
+    userFactory.$inject=['$http', '$localStorage','api','$q'];
+    function userFactory($http, $localStorage,api,$q){
         var baseUrl = "your_service_url";
         function changeUser(user) {
             angular.extend(currentUser, user);
@@ -57,6 +57,13 @@
                 console.log('************************');
                 console.log($localStorage.token);
                 success();
+            },
+            sendEmail: function(query){
+                var deferred = $q.defer();
+                API.sendEmail({q:query}).$promise.then(onComplete).catch(onFailed);
+                function onComplete(response) { deferred.resolve(response); }
+                function onFailed(error) { deferred.reject(error) }
+                return deferred.promise;
             }
         };
     }

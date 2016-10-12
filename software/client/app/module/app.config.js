@@ -4,7 +4,7 @@
 (function(){
     angular.module('CommonSpace')
         .config(function($stateProvider, $urlRouterProvider,$locationProvider,$httpProvider) {
-            $locationProvider.html5Mode(true);
+            $locationProvider.html5Mode(false);
             /*$locationProvider.hashPrefix('!');*/
             $urlRouterProvider.otherwise('/');
             $stateProvider
@@ -41,6 +41,24 @@
                     controller: 'HomeCtrl',
                     hideMenus: true,
                     controllerAs:'um'
+                })
+                .state('forgotpassword', {
+
+                    url: "/forgotpassword",
+                    templateUrl: "partials/forgotPassword.html",
+                    controller:'forgotpasswordController',
+                    controllerAs:'fc'
+
+                })
+                .state('changePassword',{
+                    url:'/changePassword',
+                    params:{
+                      userName:null
+                    },
+                    templateUrl: "partials/changePassword.html",
+                    controller:'changePasswordController',
+                    controllerAs:'cp'
+
                 })
                 .state('signup', {
                     resolve : {

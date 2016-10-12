@@ -62,5 +62,80 @@ var userSignIn = function(app,User,jwt){
             }
         });
     });
+    app.post('/user/forgotPassword',function(req,res){
+        User.find({email:req.body.username},function(err,data){
+            if(err){
+                console.log('Error :'+err)
+            }
+
+            else {
+                if(data.length>0){
+
+
+                    res.json({data:data,status:true});
+                }
+                else {
+                    res.json({data:data,status:false});
+                }
+
+            }
+        })
+    });
+    app.post('/user/changePassword',function(req,res){
+        console.log('ChangePassword server side');
+        console.log(req.body);
+        User.find({email:req.body.userName},function(err,data){
+            if(err){
+                console.log('Error :'+err)
+            }
+            else {
+                if(data.length>0){
+
+
+                    User.update(
+                        { email:req.body.userName },
+                        {
+                            password : req.body.password
+                        },
+                        { upsert: true },function(err,data){
+                            if(err){
+                                console.log(err);
+                            }
+                            else {
+                                console.log(data);
+                                res.send(data);
+                            }
+                        }
+                    )
+                }
+                else {
+                    res.send(err);
+                }
+
+            }
+        })
+
+    });
+    app.post('/user/forgotPasswordMail',function(req,res){
+        console.log('starting mail operation');
+
+        var content='<b>Hi,<br>&nbsp;&nbsp;You recently requested to reset your password for Common Space account.<br> Click the below link for reset it:http://127.0.0.1:3500/#/changePassword<br><br><br>Thank you.</b>'
+
+        var mailOptions = {
+            from: '"Common Space" <sukeshkumar017@gmail.com>', // sender address
+            to: req.body.username,  // list of receivers
+            subject: 'Notification ✔', // Subject line
+            text: 'Your added to Common Space. Now you can see all topics', // plaintext body
+            html: content
+        };
+        transporter.sendMail(mailOptions, function(error, info){
+            if(error){
+                console.log('error accured');
+                return console.log(error);
+            }
+            console.log('Message sent: ' + info.response);
+            res.json({status:true});
+        });
+    })
 };
 module.exports=userSignIn;

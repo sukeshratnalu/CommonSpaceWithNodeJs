@@ -69,6 +69,19 @@
                 method:'POST',
                 isArray:true,
                 url:'/user/authenticate'
+            },
+            'forgotPassword': {
+                method: 'POST',
+                url: '/user/forgotPassword'
+            },
+            'changePassword':{
+                method:'POST',
+                url:'/user/changePassword'
+            },
+
+            'forgotPasswordMail':{
+                method:'POST',
+                url:'/user/forgotPasswordMail'
             }
 
         }

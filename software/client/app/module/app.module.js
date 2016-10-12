@@ -8,6 +8,8 @@
         'CommonSpace.answer',
         'CommonSpace.question',
         'CommonSpace.component',
+        'CommonSpace.forgotPassword',
+        'CommonSpace.changePassword',
         'ui.router',
         'ui.bootstrap',
         'ui.router.modal',
