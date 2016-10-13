@@ -9,7 +9,8 @@
         var service={
             readAllQuestions:readAllQuestions,
             readQuestions:readQuestions,
-            updateQuestionRate:updateQuestionRate
+            updateQuestionRate:updateQuestionRate,
+            deleteQuestionByTopicId:deleteQuestionByTopicId
         };
         //function for reading questions By id from server
         function readQuestions(topicId){
@@ -59,6 +60,24 @@
             }
 
             function getAllQuestionsFailed(error) {
+                deferred.reject(error)
+            }
+
+            return deferred.promise;
+        }
+        function deleteQuestionByTopicId(id){
+            var query={
+                topicId:id
+            };
+            var deferred = $q.defer();
+            api.deletQuestionByTopicId(query).$promise.then(deleteQuestionComplete).catch(deleteQuestionFailed);
+
+            function deleteQuestionComplete(response) {
+
+                deferred.resolve(response);
+            }
+
+            function deleteQuestionFailed(error) {
                 deferred.reject(error)
             }
 

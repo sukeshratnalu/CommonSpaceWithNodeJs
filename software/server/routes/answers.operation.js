@@ -50,6 +50,25 @@ var answer={
                 }
             }
         )
+    },
+    /*delete answer by question id*/
+    deleteAnswerByQuestionId:function(req, res) {
+
+        answers.remove(
+            {
+                Q_id : req.body.questionId
+            },
+            function(err, todo) {
+            if (err)
+                res.send(err);
+
+            // get and return all the todos after you create another
+                answers.find(function(err, data) {
+                if (err)
+                    res.send(err);
+                res.json(data);
+            });
+        });
     }
 };
 module.exports=answer;

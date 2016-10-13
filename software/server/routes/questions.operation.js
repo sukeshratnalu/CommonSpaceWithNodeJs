@@ -62,6 +62,24 @@ var questions={
                 }
             }
         )
+    },
+    /*delete question by topic id*/
+    deleteQuestionByTopicId:function(req,res){
+        question.remove(
+            {
+                t_id : req.body.topicId
+            },
+            function(err, todo) {
+                if (err)
+                    res.send(err);
+
+                // get and return all the todos after you create another
+                answers.find(function(err, data) {
+                    if (err)
+                        res.send(err);
+                    res.json(data);
+                });
+            });
     }
 };
 module.exports=questions;

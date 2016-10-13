@@ -136,6 +136,28 @@ var userSignIn = function(app,User,jwt){
             console.log('Message sent: ' + info.response);
             res.json({status:true});
         });
-    })
+    });
+    app.post('/user/getUser',function(req,res){
+        User.findOne({token: req.body.userToken}, function(err, user) {
+            if (err) {
+                res.json({
+                    type: false,
+                    data: "Error occured: " + err
+                });
+            } else {
+                if (user) {
+                    res.json({
+                        type: true,
+                        data: user
+                    });
+                } else {
+                    res.json({
+                        type: false,
+                        data: "Incorrect Token"
+                    });
+                }
+            }
+        });
+    });
 };
 module.exports=userSignIn;

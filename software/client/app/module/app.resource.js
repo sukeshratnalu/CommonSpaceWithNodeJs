@@ -27,6 +27,10 @@
                 isArray:true,
                 url:'/topic/listTopic'
             },
+            'deletTopicById':{
+                method:'DELETE',
+                url:'/topic/deleteTopic'
+            },
             'addQuestions':{
                 method:'POST',
                 isArray:true,
@@ -46,6 +50,10 @@
                 method:'PUT',
                 url:'/question/updateRating'
             },
+            'deletQuestionByTopicId':{
+                method:'DELETE',
+                url:'/question/deleteQuestion'
+            },
             'addAnswers':{
                 method:'POST',
                 isArray:true,
@@ -59,6 +67,10 @@
             'updateAnswerRating':{
                 method:'PUT',
                 url:'/answer/updateRating'
+            },
+            'deletAnswerByQuestionId':{
+                method:'DELETE',
+                url:'/answer/deleteAnswer'
             },
             'registerUser':{
                 method:'POST',
@@ -78,10 +90,13 @@
                 method:'POST',
                 url:'/user/changePassword'
             },
-
             'forgotPasswordMail':{
                 method:'POST',
                 url:'/user/forgotPasswordMail'
+            },
+            'getUserByToken':{
+                method:'POST',
+                url:'/user/getUser'
             }
 
         }

@@ -48,8 +48,17 @@
             signin: function(data, success, error) {
                 $http.post('/authenticate', data).success(success).error(error)
             },
-            me: function(success, error) {
-                $http.get(baseUrl + '/me').success(success).error(error)
+            getUser: function(data) {
+                var deferred = $q.defer();
+                api.getUserByToken(data).$promise.then(getUserComplete).catch(getUserFailed);
+
+                function getUserComplete(response) {
+                    deferred.resolve(response);
+                }
+                function getUserFailed(error) {
+                    deferred.reject(error)
+                }
+                return deferred.promise;
             },
             logout: function(success) {
                 changeUser({});
@@ -59,11 +68,7 @@
                 success();
             },
             sendEmail: function(query){
-                var deferred = $q.defer();
-                API.sendEmail({q:query}).$promise.then(onComplete).catch(onFailed);
-                function onComplete(response) { deferred.resolve(response); }
-                function onFailed(error) { deferred.reject(error) }
-                return deferred.promise;
+
             }
         };
     }

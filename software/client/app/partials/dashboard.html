@@ -1,7 +1,7 @@
 <div class="container operation-div">
     <div class="row">
         <div class="col-md-6">
-            <button type="button" class="btn-primary" style="height: 35px;" ng-click="vm.addTopics();">
+            <button ng-show="vm.userRole=='admin'" type="button" class="btn-primary" style="height: 35px;" ng-click="vm.addTopics();">
                 <span class="glyphicon glyphicon-plus-sign"></span>
                 Add New Topic
             </button>
@@ -15,7 +15,11 @@
     <div class="row" >
 
         <div class="col-md-4 subject-body key-people-hover" ng-repeat="topics in vm.topics">
+            <div class="row">
+                <a href="#" ng-click=" vm.deleteTopics(topics._id)" ng-show="vm.userRole=='admin'"><i class="fa fa-trash fa-2x" aria-hidden="true"></i></a>
+            </div>
             <a ui-sref="question({id: topics._id,name:topics.topicName })" style="text-decoration: none;">
+
                 <div class="row subject-heading" >{{topics.topicName}}</div>
                 <div class="row image-div {{topics.topicName}}" id="img-id">
                 </div>

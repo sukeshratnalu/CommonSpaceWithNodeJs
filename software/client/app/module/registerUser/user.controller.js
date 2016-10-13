@@ -12,6 +12,7 @@
         um.signin=signin;
         um.signup=signup;
         um.logout=logout;
+
         //function for sign in operation
         function signin(){
             var formData = {
@@ -24,8 +25,10 @@
                     alert(res.data)
                 } else {
                     $localStorage.token = res.data.token;
-                    console.log('Its signin service');
                     console.log($localStorage.token);
+                    console.log('Its signin service');
+                    $rootScope.token=$localStorage.token;
+                    console.log($rootScope.token);
                     /*window.location = "/";*/
                     $location.path('/topics');
                 }
@@ -61,6 +64,7 @@
             });
         }
         um.token = $localStorage.token;
+
     }
 }());
 /*

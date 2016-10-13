@@ -8,7 +8,8 @@
     function answerService($q,api,$timeout){
         var service={
             readanswersById:readanswersById,
-            updateAnswerRate:updateAnswerRate
+            updateAnswerRate:updateAnswerRate,
+            deleteAnswerByQuestionId:deleteAnswerByQuestionId
         };
         function readanswersById(Qid){
             var deferred = $q.defer();
@@ -39,6 +40,24 @@
             }
 
             function updateAnswerFailed(error) {
+                deferred.reject(error)
+            }
+
+            return deferred.promise;
+        }
+        function deleteAnswerByQuestionId(id){
+            var query={
+                questionId:id
+            };
+            var deferred = $q.defer();
+            api.deletAnswerByQuestionId(query).$promise.then(deleteAnswerComplete).catch(deleteAnswerFailed);
+
+            function deleteAnswerComplete(response) {
+
+                deferred.resolve(response);
+            }
+
+            function deleteAnswerFailed(error) {
                 deferred.reject(error)
             }
 

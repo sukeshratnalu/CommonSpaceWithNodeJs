@@ -4,8 +4,8 @@
 (function(){
     angular.module('CommonSpace')
         .factory('dashboardFactory',dashboardFactory);
-    dashboardFactory.$inject=['$uibModal','api','$q','$timeout','$rootScope'];
-    function dashboardFactory($uibModal,api,$q,$timeout,$rootScope){
+    dashboardFactory.$inject=['$uibModal','api','$q','$timeout','$rootScope','answerService','questionService'];
+    function dashboardFactory($uibModal,api,$q,$timeout,$rootScope,answerService,questionService){
         var newTopic={
             name:''
         };
@@ -16,7 +16,8 @@
             openAddQuestionModal:openAddQuestionModal,
             openAddTopicModal:openAddTopicModal,
             addTopic:addTopic,
-            readTopics:readTopics
+            readTopics:readTopics,
+            deleteTopic:deleteTopic
 
         };
         //function for sending topics,questions and answers to server
@@ -190,6 +191,34 @@
                 deferred.reject(error)
             }
             return deferred.promise;
+        }
+        function deleteTopic(topic_id,question_id){
+            var deferred = $q.defer();
+            var query={
+                id:topic_id
+            };
+            answerService.deleteAnswerByQuestionId(question_id).then(deleteAnswerSuccessfully).catch(deleteAnswerFailed);
+            function deleteAnswerSuccessfully(response){
+                questionService.deleteQuestionByTopicId(topic_id).then(deleteQuestionSuccessfully).catch(deleteQuestionFailed);
+                function deleteQuestionSuccessfully(response){
+                    api.deletTopicById(id).$promise.then(deleteTopicSuccessfully).catch(deleteTopicFailed);
+                    function deleteTopicSuccessfully(response){
+                        deferred.resolve(response);
+                    }
+                    function deleteTopicFailed(error){
+                        deferred.reject(error);
+                    }
+                }
+                function deleteQuestionFailed(error){
+
+                }
+            }
+            function deleteAnswerFailed(error){
+
+            }
+            return deferred.promise;
+
+
         }
         return factory;
     }

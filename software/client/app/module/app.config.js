@@ -4,7 +4,7 @@
 (function(){
     angular.module('CommonSpace')
         .config(function($stateProvider, $urlRouterProvider,$locationProvider,$httpProvider) {
-            $locationProvider.html5Mode(false);
+            $locationProvider.html5Mode(true);
             /*$locationProvider.hashPrefix('!');*/
             $urlRouterProvider.otherwise('/');
             $stateProvider
