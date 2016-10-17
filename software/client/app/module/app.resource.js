@@ -28,7 +28,8 @@
                 url:'/topic/listTopic'
             },
             'deletTopicById':{
-                method:'DELETE',
+                method:'POST',
+                isArray:true,
                 url:'/topic/deleteTopic'
             },
             'addQuestions':{
@@ -51,7 +52,8 @@
                 url:'/question/updateRating'
             },
             'deletQuestionByTopicId':{
-                method:'DELETE',
+                method:'POST',
+                isArray:true,
                 url:'/question/deleteQuestion'
             },
             'addAnswers':{
@@ -69,7 +71,8 @@
                 url:'/answer/updateRating'
             },
             'deletAnswerByQuestionId':{
-                method:'DELETE',
+                method:'POST',
+                isArray:true,
                 url:'/answer/deleteAnswer'
             },
             'registerUser':{

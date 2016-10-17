@@ -201,7 +201,7 @@
             function deleteAnswerSuccessfully(response){
                 questionService.deleteQuestionByTopicId(topic_id).then(deleteQuestionSuccessfully).catch(deleteQuestionFailed);
                 function deleteQuestionSuccessfully(response){
-                    api.deletTopicById(id).$promise.then(deleteTopicSuccessfully).catch(deleteTopicFailed);
+                    api.deletTopicById(query).$promise.then(deleteTopicSuccessfully).catch(deleteTopicFailed);
                     function deleteTopicSuccessfully(response){
                         deferred.resolve(response);
                     }

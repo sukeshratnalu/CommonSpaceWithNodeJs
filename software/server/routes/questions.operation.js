@@ -69,12 +69,11 @@ var questions={
             {
                 t_id : req.body.topicId
             },
-            function(err, todo) {
+            function(err, data) {
                 if (err)
                     res.send(err);
 
-                // get and return all the todos after you create another
-                answers.find(function(err, data) {
+                question.find(function(err, data) {
                     if (err)
                         res.send(err);
                     res.json(data);

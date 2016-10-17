@@ -16,6 +16,8 @@ var allOperation=function(app){
     app.post('/answer/add',answers.insertAnswer);
     app.post('/answer/listById',answers.getAnswersByTopicId);
     app.put('/answer/updateRating',answers.updateAnswerRating);
-    app.delete('/answer/deleteAnswer',answers.deleteAnswerByQuestionId)
+    app.post('/answer/deleteAnswer',answers.deleteAnswerByQuestionId);
+    app.post('/question/deleteQuestion',questions.deleteQuestionByTopicId);
+    app.post('/topic/deleteTopic',topics.deleteTopicById);
 };
 module.exports=allOperation;

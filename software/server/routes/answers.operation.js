@@ -54,6 +54,9 @@ var answer={
     /*delete answer by question id*/
     deleteAnswerByQuestionId:function(req, res) {
 
+        console.log('delete answer operation');
+        console.log(req.body.questionId);
+
         answers.remove(
             {
                 Q_id : req.body.questionId
@@ -61,8 +64,6 @@ var answer={
             function(err, todo) {
             if (err)
                 res.send(err);
-
-            // get and return all the todos after you create another
                 answers.find(function(err, data) {
                 if (err)
                     res.send(err);

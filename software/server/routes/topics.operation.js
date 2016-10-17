@@ -32,6 +32,24 @@ var topics={
                 res.end();
             }
         })
+    },
+    /*delete topic by id*/
+    deleteTopicById:function(req,res) {
+        Topics.remove(
+            {
+                _id: req.body.id
+            },
+            function (err, data) {
+                if (err)
+                    res.send(err);
+
+
+                Topics.find(function (err, data) {
+                    if (err)
+                        res.send(err);
+                    res.json(data);
+                });
+            });
     }
 };
 module.exports=topics;
